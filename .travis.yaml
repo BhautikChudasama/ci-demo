@@ -5,6 +5,10 @@ node_js:
 services:
     - docker
 
+branches:
+  only:
+    - "master"
+
 # Pre-testing install before testing
 install:
     - echo "Nothing needs to install"
@@ -20,3 +24,8 @@ script:
 after_success:
     - docker login -u "$username" -p "$password"
     - docker push bhautikchudasama/ci-demo:latest
+
+notifications:
+  email:
+    on_failure: change
+    on_success: change
